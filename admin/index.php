@@ -140,9 +140,32 @@
 					</div>
 				</div>
 			</div>
-							<!-- /.row -->
-							
-							
+			<!-- /.row -->
+			<?php 
+			$query = "SELECT * FROM posts WHERE post_status = 'draft' ";
+			$select_all_drafts = mysqli_query($connection, $query);
+			//Count the Number of Posts
+			$post_draft_count = mysqli_num_rows($select_all_drafts);
+			
+			$query = "SELECT * FROM comments WHERE comment_status = 'Unapproved' ";
+			$comment_unnaproved = mysqli_query($connection, $query);
+			//Count the Number of Posts
+			$comment_unnaproved_count = mysqli_num_rows($comment_unnaproved);
+			
+			$query = "SELECT * FROM users WHERE user_role = 'Subscriber' ";
+			$user_subscribers = mysqli_query($connection, $query);
+			//Count the Number of Posts
+			$user_subscribers_count = mysqli_num_rows($user_subscribers);
+
+			
+			
+			
+			
+			
+			
+			
+			?>				
+				
 			<div class="row">
 
 				<script type="text/javascript">
@@ -152,10 +175,10 @@
 					var data = google.visualization.arrayToDataTable([
 					  ['Data', 'Count'],
 						<?php 
-							$element_text = ['Active Posts', 'Comments', 'Users', 'Categories'];
-							$element_count = [$post_count, $comment_count, $user_count, $category_count];
+							$element_text = ['Active Posts', 'Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Subscribers', 'Categories'];
+							$element_count = [$post_count, $post_draft_count, $comment_count, $comment_unnaproved_count, $user_count, $user_subscribers_count, $category_count];
 							
-							for($i = 0; $i < 4; $i++){
+							for($i = 0; $i < 7; $i++){
 								echo "['{$element_text[$i]}'" . ",". "{$element_count[$i]}],";
 							}
 							//for loop immitates structure of --> ['Post', 1000],
