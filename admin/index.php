@@ -20,10 +20,7 @@
 					</h1>
 				</div>
 			</div>
-			
-			
-			
-			
+
 			<!-- /.row -->    
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
@@ -154,7 +151,15 @@
 				  function drawChart() {
 					var data = google.visualization.arrayToDataTable([
 					  ['Data', 'Count'],
-					  ['Post', 1000],
+						<?php 
+							$element_text = ['Active Posts', 'Categories', 'Users', 'Comments'];
+							$element_count = [$post_count, $category_count, $user_count, $comment_count];
+							
+							for($i = 0; $i < 4; $i++){
+								echo "['{$element_text[$i]}'" . ",". "{$element_count[$i]}],";
+							}
+							//for loop immitates structure of --> ['Post', 1000],
+						?>
 					]);
 
 					var options = {
