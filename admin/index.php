@@ -63,8 +63,15 @@
 									<i class="fa fa-comments fa-5x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-								 <div class='huge'>23</div>
-								  <div>Comments</div>
+									<?php 
+										$query = "SELECT * FROM comments ";
+										$select_all_comments = mysqli_query($connection, $query);
+										//Count the Number of Posts
+										$comment_count = mysqli_num_rows($select_all_comments);
+										
+										echo "<div class='huge'>{$comment_count}</div>";
+									?>
+								 <div>Comments</div>
 								</div>
 							</div>
 						</div>
@@ -85,7 +92,14 @@
 									<i class="fa fa-user fa-5x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-								<div class='huge'>23</div>
+								<?php 
+										$query = "SELECT * FROM users ";
+										$select_all_users = mysqli_query($connection, $query);
+										//Count the Number of Posts
+										$user_count = mysqli_num_rows($select_all_users);
+										
+										echo "<div class='huge'>{$user_count}</div>";
+									?>
 									<div> Users</div>
 								</div>
 							</div>
