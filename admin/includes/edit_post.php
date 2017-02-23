@@ -116,10 +116,21 @@
 		<input value="<?php echo $post_Author; ?>" type="text" class="form-control" name="post_Author">
 	</div>	
 	
+	
 	<div class="form-group">
-		<label for="post_status">Post Status</label>
-		<input value="<?php echo $post_Status; ?>" type="text" class="form-control" name="post_status">
+		<select name="post_status" id="">
+			<option value='<?php echo $post_Status;?>'><?php echo $post_Status; ?></option>
+				<?php
+					if($post_Status == "published"){
+						echo "<option value='draft'>draft</option>";
+					} else{
+						echo "<option value='published'>publish</option>";
+					}
+				?>
+		</select>
 	</div>
+	
+
 	
 	<div class="form-group">
 		<img width=100 src="../images/<?php echo $post_Image; ?>" alt=""/>
