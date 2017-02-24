@@ -30,6 +30,29 @@
                 	<li>
                         <a href="admin">Admin</a>
                     </li>
+                    
+                    <?php 
+					
+						if(isset($_SESSION['role'])){
+							if($_GET['p_id']){
+								$clicked_post_id = $_GET['p_id'];
+								echo "<li><a href='admin/posts.php?source=edit_post&p_id={$clicked_post_id}'>Edit</a></li>";
+							}
+						} 
+					?>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
