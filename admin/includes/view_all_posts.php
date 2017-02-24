@@ -8,6 +8,16 @@
 					$update_publish_status = mysqli_query($connection,$query);
 					confirmQuery($update_publish_status);
 					break;
+				case 'draft':
+					$query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = '$postValueId' ";
+					$update_draft_status = mysqli_query($connection,$query);
+					confirmQuery($update_draft_status);
+					break;
+				case 'delete':
+					$query = "DELETE FROM posts WHERE post_id = {$postValueId} ";
+					$delete_post = mysqli_query($connection,$query);
+					confirmQuery($delete_post);
+					break;
 			}
 		}
 	}
