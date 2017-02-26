@@ -14,7 +14,13 @@
 				<div class="col-lg-12">
 					<h1 class="page-header">
 						Categories
-						<small>"Do or do not, there is no try" -Yoda</small>
+						<small>"Welcome To Your CMS,
+						<?php 
+							if(isset($_SESSION['username'])){
+								echo $_SESSION['username'];
+							}
+						?>
+						"</small>
 					</h1>
 					
 					<div class="col-xs-6">
