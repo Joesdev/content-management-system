@@ -86,7 +86,7 @@
 				<?php
 				echo "<td> $post_Id </td>";
 				echo "<td> $post_Author </td>";
-				echo "<td> <a href ='post.php?p_id=$post_Id'> $post_Title </a></td>";
+				echo "<td> <a href ='../post.php?p_id=$post_Id'> $post_Title </a></td>";
 
 				// Retreive id and category for database
 				$query = "SELECT * FROM categories WHERE cat_id = {$post_Category} ";
