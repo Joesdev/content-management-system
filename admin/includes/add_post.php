@@ -1,7 +1,6 @@
 <?php
 	// check button press
 	if(isset($_POST['create_post'])){
-		
 		$post_Title = $_POST['title'];
 		$post_Author = $_POST['author'];
 		$post_Category_Id = $_POST['post_category'];
@@ -31,6 +30,11 @@
 		$create_Post_Query = mysqli_query($connection, $query);
 		
 		confirmQuery($create_Post_Query);
+		
+		// Returns auto generated ID used in the last query
+		$thePostId = mysqli_insert_id($connection);
+		
+		echo "<p class='bg-success'>Post Created!: <a href='../post.php?p_id=$thePostId'>View Post</a> or <a href='posts.php'>View More Posts</a></p>";
 		
 	}
 
@@ -70,10 +74,18 @@
 		<input type="text" class="form-control" name="author">
 	</div>	
 	
+	
+	
 	<div class="form-group">
-		<label for="post_status">Post Status</label>
-		<input type="text" class="form-control" name="post_status">
+		<select name='post_status' id=''>
+			<option value="draft">Post Status</option>
+			<option value="published">Published</option>
+			<option value="draft">Draft</option>
+		</select>
 	</div>	
+	
+	
+	
 	
 	<div class="form-group">
 		<label for="post_image">Post Image</label>

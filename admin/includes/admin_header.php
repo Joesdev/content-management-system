@@ -49,7 +49,7 @@
 
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="http://cloud.tinymce.com/stable/tinymce.min.js"></script>
-	<script src="js/scripts.js"></script>
+
 </head>
 
 <body>
