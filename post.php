@@ -63,29 +63,33 @@
 					<?php
 						// On Comment Submit Click
 						if(isset($_POST['commented_submit'])){
-							// Collect Data From Form
-							$clicked_post_id = $_GET['p_id'];
-							$commented_author = $_POST['commented_author'];
-							$commented_email = $_POST['commented_email'];
-							$commented_content = $_POST['commented_content'];
-							
-							$query = "INSERT INTO comments (comment_post_id, comment_Author,
-								comment_email, comment_content, comment_status, comment_date)";
-							$query .= "VALUES ($clicked_post_id, '{$commented_author}', '{$commented_email}',
-								'{$commented_content}', 'Unapproved', now())";
-						
-							// Send Query to Insert Data
-							$create_comment_query = mysqli_query($connection, $query);
-							
-							confirmQuery($create_comment_query);
-							
-							
-							$query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
-							$query .= "WHERE post_id = $clicked_post_id ";
-							
-							$update_comment_count = mysqli_query($connection, $query);
-							confirmQuery($update_comment_count);
-						}
+								// Collect Data From Form
+								$clicked_post_id = $_GET['p_id'];
+								$commented_author = $_POST['commented_author'];
+								$commented_email = $_POST['commented_email'];
+								$commented_content = $_POST['commented_content'];
+
+								if(!empty($commented_author) && !empty($commented_email) &&              				!empty($commented_content)) {
+									$query = "INSERT INTO comments (comment_post_id, comment_Author,
+										comment_email, comment_content, comment_status, comment_date)";
+									$query .= "VALUES ($clicked_post_id, '{$commented_author}', '{$commented_email}',
+										'{$commented_content}', 'Unapproved', now())";
+
+									// Send Query to Insert Data
+									$create_comment_query = mysqli_query($connection, $query);
+
+									confirmQuery($create_comment_query);
+
+
+									$query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
+									$query .= "WHERE post_id = $clicked_post_id ";
+
+									$update_comment_count = mysqli_query($connection, $query);
+									confirmQuery($update_comment_count);
+								}else {
+									echo "<script>alert('It Seems You Didn\'t Type Anything, Try Again'); </script>";
+								}
+							}// end outer if
 				
 				
 					?>
