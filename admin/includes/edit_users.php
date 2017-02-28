@@ -87,7 +87,7 @@
 			
 	<div class="form-group">
 		<select name="input_role" id="">
-			<option value="Subscriber"><?php echo $user_role; ?></option>
+			<option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
 			
 			<?php 
 				if($user_role == 'Admin'){

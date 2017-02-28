@@ -104,7 +104,7 @@
 				echo "<td> $post_Comment_Count </td>";
 				echo "<td> $post_Date </td>";
 				echo "<td><a href='posts.php?source=edit_post&p_id={$post_Id}'>Edit</a></td>";
-				echo "<td><a href='posts.php?delete={$post_Id}'>Delete</a></td>";
+				echo "<td><a onClick=\"javascript: return confirm('Are You Sure You Want To Delete?'); \"href='posts.php?delete={$post_Id}'>Delete</a></td>";
 				echo "</tr>";
 			}
 
