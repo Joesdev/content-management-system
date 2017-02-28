@@ -8,17 +8,6 @@
 		$password = $_POST['password'];
 		
 		if(!empty($username) && !empty ($email) && !empty ($password)){
-			// Clean up input for security
-			echo $username = mysqli_real_escape_string($connection, $username);
-			echo $email    = mysqli_real_escape_string($connection, $email);
-			echo $password = mysqli_real_escape_string($connection, $password);
-
-			$query = "SELECT user_randSalt FROM users" ;
-			$select_randsalt_query = mysqli_query($connection, $query);
-
-			if(!$select_randsalt_query){
-				die('QUERY FAILED!' . mysqli_error($connection));
-			}
 
 			// Clean up input for security
 			$username = mysqli_real_escape_string($connection, $username);
@@ -31,10 +20,16 @@
 			if(!$select_randsalt_query){
 				die('QUERY FAILED!' . mysqli_error($connection));
 			}
+			
+			$message = "Account Created!";
 
+		} else {
+			$message = "Fields Cannot Be Empty.";
 		}
+		
+	} else {
+		$message = "";
 	}
-
 ?> 
  
 
@@ -54,6 +49,7 @@
                 <div class="form-wrap">
                 <h1>Register</h1>
                     <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+                       <h6 class="text-center"><?php echo $message; ?></h6>
                         <div class="form-group">
                             <label for="username" class="sr-only">username</label>
                             <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">
