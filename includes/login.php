@@ -28,7 +28,7 @@
 			$db_password = $row['user_password'];
 			$db_role = $row['user_role'];
 		}
-		// Decrypt?
+		
 		$password = crypt($password, $db_password);
 		
 		// Re-direct to Admin if Login Info Exists
