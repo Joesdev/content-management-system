@@ -39,7 +39,7 @@
 		
 		
 		
-		$query = "SELECT user_randSalt FROM users" ;
+		$query = "SELECT * FROM users WHERE user_id = $the_user_id " ;
 		$select_randsalt_query = mysqli_query($connection, $query);
 
 		if(!$select_randsalt_query){
@@ -47,8 +47,13 @@
 		}
 		$row = mysqli_fetch_assoc($select_randsalt_query);
 		$salt = $row['user_randSalt'];
-		$hashed_password = crypt($user_password, $salt);
 		
+		// Only encrypt a password if a new pass is entered
+		if($_POST['input_password'] == $row['user_password'] ){
+			$hashed_password = $row['user_password'];
+		} else{
+			$hashed_password = crypt($user_password, $salt);
+		}
 		
 		
 		$query = "UPDATE users SET ";
