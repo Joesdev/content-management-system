@@ -18,6 +18,38 @@
 					$delete_post = mysqli_query($connection,$query);
 					confirmQuery($delete_post);
 					break;
+				case 'clone':
+					$query = "SELECT * FROM posts WHERE post_id = '{$postValueId}' ";
+					$select_post_query = mysqli_query($connection, $query);
+					
+					while($row = mysqli_fetch_array($select_post_query)){
+						
+						$post_Title = $row['post_title'];
+						$post_Author = $row['post_author'];
+						$post_Category_Id = $row['post_category_id'];
+						$post_Status =$row['post_status'];
+
+						$post_Image = $row['post_image'];
+						//$post_Image_Temp = $_FILES['image']["tmp_name"];
+
+						$post_tags = $row['post_tags'];
+						$post_content = $row['post_content'];
+						$post_Date = $row['post_date'];
+						//$post_comment_count = 4;
+
+						// Move Picture from temporary server space to actual.
+
+						$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image
+									, post_content, post_tags, post_status) ";
+						$query .= "VALUES({$post_Category_Id}, '{$post_Title}', '{$post_Author}',now()
+									, '{$post_Image}', '{$post_content}', '{$post_tags}','{$post_Status}' )" ;
+
+						$create_Post_Query = mysqli_query($connection, $query);
+
+						confirmQuery($create_Post_Query);
+						break;
+						
+					}
 			}
 		}
 	}
@@ -36,6 +68,7 @@
 				<option value="published">Publish</option>
 				<option value="draft">Draft</option>
 				<option value="delete">Delete</option>
+				<option value="clone">Clone</option>
 			</select>
 			
 		</div>
