@@ -100,7 +100,7 @@
 
 			<?php
 			// Collect each row from database
-			$query = "SELECT * FROM posts ";
+			$query = "SELECT * FROM posts ORDER BY post_id DESC ";
 			$select_Posts = mysqli_query($connection, $query);
 			while($row = mysqli_fetch_assoc($select_Posts)){
 				$post_Id = $row['post_id'];
