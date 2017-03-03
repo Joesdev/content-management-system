@@ -140,7 +140,7 @@
 				echo "<td> $post_Date </td>";
 				echo "<td><a href='posts.php?source=edit_post&p_id={$post_Id}'>Edit</a></td>";
 				echo "<td><a onClick=\"javascript: return confirm('Are You Sure You Want To Delete?'); \"href='posts.php?delete={$post_Id}'>Delete</a></td>";
-				echo "<td>{$post_view_count}</td>";
+				echo "<td><a href='posts.php?reset={$post_Id}'>{$post_view_count}</a></td>";
 				echo "</tr>";
 			}
 
@@ -160,6 +160,14 @@
 		header("Location: posts.php");
 	}
 
+		if(isset($_GET['reset'])){
+		
+		$caught_post_id = $_GET['reset'];
+		$query = "UPDATE posts SET post_view_count = 0 WHERE post_id =  {$caught_post_id}";
+		$reset_query = mysqli_query($connection, $query);
+		
+		header("Location: posts.php");
+	}
 
 
 
