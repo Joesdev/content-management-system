@@ -14,11 +14,7 @@
             <div class="col-md-8">
                 
                 <?php 
-					// Find Number of Posts
-					$post_count_query = "SELECT * FROM posts ";
-					$query_post_count = mysqli_query($connection, $post_count_query);
-					$count = mysqli_num_rows();	
-				
+					
 					$query = "SELECT * FROM posts " ;
 					$queryAllPosts = mysqli_query($connection, $query);
 
