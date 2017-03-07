@@ -13,7 +13,18 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
                 
+
                 <?php 
+					$page = isset($_GET['page']) ? $_GET['page'] : "" ;
+					
+					// Check When User Is On Homepage
+					if($page =="" || $page == 1 ){
+						$page_1 = 0;
+					} else {
+						$page_1 = ($page * 5) - 5; 
+					}
+	
+				
 					// Find Number of Posts
 					$post_count_query = "SELECT * FROM posts ";
 					$find_count = mysqli_query($connection, $post_count_query);
@@ -21,8 +32,11 @@
 					$count = mysqli_num_rows($find_count);
 					$count = ceil($count / 5) ;
 				
-					$query = "SELECT * FROM posts " ;
+					$query = "SELECT * FROM posts LIMIT $page_1, 6 " ;
 					$queryAllPosts = mysqli_query($connection, $query);
+
+
+
 
 					// Retreive row , print out value as a nav link
 					while($row = mysqli_fetch_assoc($queryAllPosts)){
@@ -41,7 +55,7 @@
 				?>
 						
 						<h1 class="page-header">
-							<?php echo $count;?>
+							<?php echo $count . "   ". $page;?>
 						</h1>
 
 						<!-- First Blog Post -->
@@ -85,13 +99,7 @@
 				for($i = 1;$i <= $count; $i++){
 					echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
 				}
-	
 			?>
-        	
-        	
-        	
-        	
-        	
         	
         </ul>
         
