@@ -13,7 +13,6 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
                 
-
                 <?php 
 					
 					$page = isset($_GET['page']) ? $_GET['page'] : "" ;
@@ -98,8 +97,7 @@
         <ul class="pager">
         	<?php
 				for($i = 1;$i <= $count; $i++){
-					
-					
+
 					if($i == $page){
 						echo "<li><a class ='active_link' href='index.php?page={$i}'>{$i}</a></li>";
 					} else {
@@ -109,19 +107,5 @@
 			?>
         	
         </ul>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
 <?php include "includes/footer.php" ?>        
