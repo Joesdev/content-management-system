@@ -16,8 +16,10 @@
                 <?php 
 					// Find Number of Posts
 					$post_count_query = "SELECT * FROM posts ";
-					$query_post_count = mysqli_query($connection, $post_count_query);
-					$count = mysqli_num_rows();	
+					$find_count = mysqli_query($connection, $post_count_query);
+
+					$count = mysqli_num_rows($find_count);
+					$count = ceil($count / 5) ;
 				
 					$query = "SELECT * FROM posts " ;
 					$queryAllPosts = mysqli_query($connection, $query);
@@ -39,8 +41,7 @@
 				?>
 						
 						<h1 class="page-header">
-							Page Heading
-							<small>Secondary Text</small>
+							<?php echo $count;?>
 						</h1>
 
 						<!-- First Blog Post -->
