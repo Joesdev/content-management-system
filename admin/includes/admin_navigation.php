@@ -15,7 +15,8 @@
 		   <li><a href="../index.php">Home Page</a></li>
 		   
 		   <li>
-				<a href="#">Users Online: <?php echo num_users_online();?></a>
+				<!--<a href="#">Users Online: <?php //echo num_users_online();?></a>-->
+			   <a href="">Users Online: <span class="usersonline"> </span></a>
 			</li>
 			
 			<li class="dropdown">

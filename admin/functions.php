@@ -72,33 +72,44 @@
 		}
 	}
 
-	function num_users_online(){
-		
+	function users_online(){
 		global $connection;
-		//Catch The Unique Session ID
-		$session = session_id();
-		$time = time();
-	
-		$time_out_sec = 60;
-		$time_out = $time - $time_out_sec;
-		$query = "SELECT * FROM users_online WHERE session = '$session' " ;
-		$send_query = mysqli_query($connection, $query);
 		
-		// Find Number of Rows
-		$count = mysqli_num_rows($send_query);
-		// Check if this Session ID exists
-		if($count == NULL){
-			mysqli_query($connection , "INSERT INTO users_online(session, time) VALUES('$session', '$time') ");
-		} else {
-			mysqli_query($connection, "UPDATE users_online SET time = '$time' WHERE session = '$session' ");
-		}
-						  
-		$users_online_query = mysqli_query($connection, "SELECT * FROM users_online WHERE time > $time_out");
-		$count_user = mysqli_num_rows($users_online_query);
-		return $count_user;
-	
+		if(isset($_GET['onlineusers'])){
+			
+			
+			if(!$connection){
+				session_start();
+				include("../includes/db.php");
+				
+				//Catch The Unique Session ID
+				$session = session_id();
+				$time = time();
+
+				$time_out_in_sec = 60;
+				$time_out = $time - $time_out_in_sec;
+				$query = "SELECT * FROM users_online WHERE session = '$session' " ;
+				$send_query = mysqli_query($connection, $query);
+
+				// Find Number of Rows
+				$count = mysqli_num_rows($send_query);
+				// Check if this Session ID exists
+				if($count == NULL){
+					mysqli_query($connection , "INSERT INTO users_online(session, time) VALUES('$session', '$time') ");
+				} else {
+					mysqli_query($connection, "UPDATE users_online SET time = '$time' WHERE session = '$session' ");
+				}
+
+				$users_online_query = mysqli_query($connection, "SELECT * FROM users_online WHERE time > '$time_out'");
+				echo $count_user = mysqli_num_rows($users_online_query);
+				
+			}// end inner if
+		
+		} // end if statement
 		
 		
 	}
+	
+	users_online();
 
 ?>

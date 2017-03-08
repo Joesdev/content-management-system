@@ -3,7 +3,7 @@ tinymce.init({ selector:'textarea' });
 
 
 
-$(document).ready(function(){
+$(document).ready(function() {
 	$('#selectAllBoxes').click(function(event){
 		if(this.checked){
 			$('.checkBoxes').each(function(){
@@ -27,14 +27,15 @@ $(document).ready(function(){
 	
 });
 
-function loadUsersOnline(){
-	$.get("functions.php?onlineusers=result", function(data){
-		$(".usersonline").text(data);
+function loadUsersOnline() {
+	$.get("functions.php?onlineusers=result", function (data){ $(".usersonline").text(data);
 	});
 }
 
+setInterval(function () {
+	loadUsersOnline();
+},500); // 0.5 seconds
 
-loadUsersOnline();
 
 
 
