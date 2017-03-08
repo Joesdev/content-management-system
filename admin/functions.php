@@ -74,6 +74,7 @@
 
 	function num_users_online(){
 		
+		global $connection;
 		//Catch The Unique Session ID
 		$session = session_id();
 		$time = time();
