@@ -86,7 +86,7 @@
 				$session = session_id();
 				$time = time();
 
-				$time_out_in_sec = 60;
+				$time_out_in_sec = 05;
 				$time_out = $time - $time_out_in_sec;
 				$query = "SELECT * FROM users_online WHERE session = '$session' " ;
 				$send_query = mysqli_query($connection, $query);
