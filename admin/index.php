@@ -2,6 +2,28 @@
 
 <div id="wrapper">
 
+	<?php 
+		//Catch The Unique Session ID
+		$session = session_id();
+		$time = time();
+	
+		$time_out_sec = 60;
+		$time_out = $time - $time_out_sec;
+		$query = "SELECT * FROM users_online WHERE session = '$session' " ;
+		$send_query = mysqli_query($connection, $query);
+		
+		// Find Number of Rows
+		$count = mysqli_num_rows($send_query);
+		if($count == NULL){
+			$mysqli_query($connection, "INSERT INTO users_online(session, time) VALUES('$session', '$time_out') ");
+		} else {
+			
+		}
+		
+	
+	
+	?>
+
 	<!-- Navigation -->
 	<?php include "includes/admin_navigation.php" ?>
 
