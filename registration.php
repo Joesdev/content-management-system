@@ -16,17 +16,6 @@
 			
 			
 			$password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12) );
-
-			/*$query = "SELECT user_randSalt FROM users" ;
-			$select_randsalt_query = mysqli_query($connection, $query);
-
-			if(!$select_randsalt_query){
-				die('QUERY FAILED!' . mysqli_error($connection));
-			}*/
-			
-			/*$row = mysqli_fetch_assoc($select_randsalt_query);
-			$salt = $row['user_randSalt'];
-			$password = crypt($password, $salt);*/
 			
 			$query = "INSERT INTO users (user_name, user_email, user_password, user_role) ";
 			$query .= "VALUES ('{$username}', '{$email}', '{$password}', 'subscriber') ";
@@ -35,11 +24,7 @@
 			if(!$register_user_query){
 				die('QUERY FAILED!' . mysqli_error($connection));
 			}
-			
-			
-			
-			
-			
+
 			$message = "Account Created!";
 
 		} else {

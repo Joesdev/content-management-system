@@ -29,10 +29,11 @@
 			$db_role = $row['user_role'];
 		}
 		
-		$password = crypt($password, $db_password);
+		//$password = crypt($password, $db_password);
 		
 		// Re-direct to Admin if Login Info Exists
-		if($username === $db_username && $password === $db_password ){
+		
+		if(password_verify($password, $db_password) ){
 			// Save Information for Multiple Pages
 			$_SESSION['username'] = $db_username;
 			$_SESSION['firstname'] = $db_firstname;
