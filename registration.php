@@ -13,6 +13,9 @@
 			$username = mysqli_real_escape_string($connection, $username);
 			$email    = mysqli_real_escape_string($connection, $email);
 			$password = mysqli_real_escape_string($connection, $password);
+			
+			
+			$password = echo password_hash($password, PASSWORD_BCRYPT, array('cost' => 12) );
 
 			$query = "SELECT user_randSalt FROM users" ;
 			$select_randsalt_query = mysqli_query($connection, $query);
