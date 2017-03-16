@@ -37,24 +37,17 @@
 		$user_email = $_POST['input_email'];
 		$user_password = $_POST['input_password'];
 		
-		
-		
-		$query = "SELECT * FROM users WHERE user_id = $the_user_id " ;
-		$select_randsalt_query = mysqli_query($connection, $query);
+		}
 
-		if(!$select_randsalt_query){
-			die('QUERY FAILED!' . mysqli_error($connection));
+		if(!empty(user_password)){
+			$get_user_query = 'SELECT user_password FROM users WHERE user_id = $the_user_id ';
+			$get_user = mysqli_query($connection, $get_user_query);
+			confirmQuery($get_user);
+			
+			$row = mysqli_fetch_array($get_user);
+			$db_password = row['user_password'];
+			
 		}
-		$row = mysqli_fetch_assoc($select_randsalt_query);
-		$salt = $row['user_randSalt'];
-		
-		// Only encrypt a password if a new pass is entered
-		if($_POST['input_password'] == $row['user_password'] ){
-			$hashed_password = $row['user_password'];
-		} else{
-			$hashed_password = crypt($user_password, $salt);
-		}
-		
 		
 		$query = "UPDATE users SET ";
 		$query .= "user_firstname = '{$user_firstname}', ";
