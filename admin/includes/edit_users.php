@@ -36,8 +36,6 @@
 		*/
 		$user_email = $_POST['input_email'];
 		$user_password = $_POST['input_password'];
-		
-		}
 
 		if(!empty(user_password)){
 			$get_user_query = 'SELECT user_password FROM users WHERE user_id = $the_user_id ';
@@ -47,6 +45,10 @@
 			$row = mysqli_fetch_array($get_user);
 			$db_password = row['user_password'];
 			
+		}
+		
+		if($db_password != $user_password){
+			$hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 10));
 		}
 		
 		$query = "UPDATE users SET ";
@@ -60,6 +62,7 @@
 		
 		$edit_user_query = mysqli_query($connection, $query);
 		confirmQuery($edit_user_query);
+		
 		
 		}
 
