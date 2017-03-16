@@ -14,7 +14,7 @@
 		$input_password = $_POST['input_password'];
 		
 		//Encrypt Password
-		$input_password = password_hash($input_password, PASSWORD_BCRYPT, array('cost' => 12) );
+		$input_password = password_hash($input_password, PASSWORD_BCRYPT, array('cost' => 10) );
 		
 		// Move Picture from temporary server space to actual.
 		if(!move_uploaded_file($input_image_temp , "../images/$input_image")){
