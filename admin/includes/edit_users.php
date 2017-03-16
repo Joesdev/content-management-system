@@ -48,7 +48,7 @@
 		}
 		
 		if($db_password != $user_password){
-			$hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 10));
+			$hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
 		}
 		
 		$query = "UPDATE users SET ";
