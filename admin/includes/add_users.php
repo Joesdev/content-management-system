@@ -13,8 +13,10 @@
 		$input_email = $_POST['input_email'];
 		$input_password = $_POST['input_password'];
 		
-		// Move Picture from temporary server space to actual.
+		//Encrypt Password
+		$input_password = password_hash($input_password, PASSWORD_BCRYPT, array('cost' => 12) );
 		
+		// Move Picture from temporary server space to actual.
 		if(!move_uploaded_file($input_image_temp , "../images/$input_image")){
 			echo "File failed to upload.";
 		}
