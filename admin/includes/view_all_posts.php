@@ -136,7 +136,15 @@
 				echo "<td> $post_Status </td>";
 				echo "<td><img width=100 src='../images/$post_Image' > </td>";
 				echo "<td> $post_Tags </td>";
-				echo "<td> $post_Comment_Count </td>";
+				
+				$query = "SELECT * FROM comments WHERE comment_post_id = $post_Id";
+				$send_comment_query = mysqli_query($connection, $query);
+				$count_comments = mysqli_num_rows($send_comment_query);
+				
+				
+				
+				
+				echo "<td> $count_comments </td>";
 				echo "<td> $post_Date </td>";
 				echo "<td><a href='posts.php?source=edit_post&p_id={$post_Id}'>Edit</a></td>";
 				echo "<td><a onClick=\"javascript: return confirm('Are You Sure You Want To Delete?'); \"href='posts.php?delete={$post_Id}'>Delete</a></td>";
