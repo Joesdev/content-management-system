@@ -38,8 +38,8 @@
 							case 'view_all_comments';
 								include "includes/view_all_comments.php";
 								break;
-							case 'view_selected_comments'
-								include "includes/view_selected_comments.php"
+							case 'view_selected_comments';
+								include "includes/view_selected_comments.php";
 								break;
 							default:
 								include "includes/view_all_comments.php";
