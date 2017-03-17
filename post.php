@@ -95,10 +95,10 @@
 									confirmQuery($create_comment_query);
 
 
-									$query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
+							/*		$query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
 									$query .= "WHERE post_id = $clicked_post_id ";
 
-									$update_comment_count = mysqli_query($connection, $query);
+									$update_comment_count = mysqli_query($connection, $query);*/
 									confirmQuery($update_comment_count);
 								}else {
 									echo "<script>alert('It Seems You Didn\'t Type Anything, Try Again'); </script>";
