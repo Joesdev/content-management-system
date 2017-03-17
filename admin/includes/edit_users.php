@@ -14,14 +14,9 @@
 			$user_email = $row['user_email'];
 			$user_image = $row['user_image'];
 			$user_role = $row['user_role'];
-
+			
 		}
-	}
-	
-
-
-
-
+	} // POST PASSWORD is referencing above, edit user is not yet clicked
 
 	// Update On Button Click
 	if(isset($_POST['edit_user'])){
@@ -37,34 +32,43 @@
 		$user_email = $_POST['input_email'];
 		$user_password = $_POST['input_password'];
 
-		if(!empty(user_password)){
-			$get_user_query = 'SELECT user_password FROM users WHERE user_id = $the_user_id ';
+		if(!empty($user_password)){
+			$get_user_query = "SELECT user_password FROM users WHERE user_id = $the_user_id ";
 			$get_user = mysqli_query($connection, $get_user_query);
 			confirmQuery($get_user);
 			
 			$row = mysqli_fetch_array($get_user);
-			$db_password = row['user_password'];
+			$db_password = $row['user_password'];
 			
+			
+			echo "<h1> user_password: $user_password</h1> . <br>";
+			echo "<h1> db_password: $db_password</h1>";
+			echo "<h1> isset for post edit user: " . isset($_POST['edit_user']) ."</h1>";
+			if($user_password !== $db_password){
+				$hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
+				
+			} else {
+				$hashed_password = $db_password;
+			}
+			
+
+			
+		
+			$query = "UPDATE users SET ";
+			$query .= "user_firstname = '{$user_firstname}', ";
+			$query .= "user_lastname = '{$user_lastname}', ";
+			$query .= "user_role = '{$user_role}', ";
+			$query .= "user_name = '{$user_name}', ";
+			$query .= "user_email = '{$user_email}', ";
+			$query .= "user_password = '{$hashed_password}' ";
+			$query .= "WHERE user_id = '{$the_user_id}'";
+
+			$edit_user_query = mysqli_query($connection, $query);
+			confirmQuery($edit_user_query);
+			header("Location: users.php?source='view_all_users");
+
 		}
-		
-		if($db_password != $user_password){
-			$hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
-		}
-		
-		$query = "UPDATE users SET ";
-		$query .= "user_firstname = '{$user_firstname}', ";
-		$query .= "user_lastname = '{$user_lastname}', ";
-		$query .= "user_role = '{$user_role}', ";
-		$query .= "user_name = '{$user_name}', ";
-		$query .= "user_email = '{$user_email}', ";
-		$query .= "user_password = '{$hashed_password}' ";
-		$query .= "WHERE user_id = '{$the_user_id}'";
-		
-		$edit_user_query = mysqli_query($connection, $query);
-		confirmQuery($edit_user_query);
-		
-		
-		}
+	}
 
 ?>
 
