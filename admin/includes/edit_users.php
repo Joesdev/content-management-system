@@ -16,9 +16,8 @@
 			$user_role = $row['user_role'];
 			
 		}
-	} // POST PASSWORD is referencing above, edit user is not yet clicked
+	} 
 
-	// Update On Button Click
 	if(isset($_POST['edit_user'])){
 		
 		$user_name = $_POST['input_username'];
@@ -51,9 +50,6 @@
 				$hashed_password = $db_password;
 			}
 			
-
-			
-		
 			$query = "UPDATE users SET ";
 			$query .= "user_firstname = '{$user_firstname}', ";
 			$query .= "user_lastname = '{$user_lastname}', ";
