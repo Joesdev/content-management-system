@@ -49,6 +49,9 @@
 		</div>
 		
 	<div class="form-group">
+	
+		<label for="category">Category</label>
+	
 		<select name="post_category" id="">
 		<?php 
 			
@@ -68,11 +71,41 @@
 			?>	
 		</select>	
 	</div>
-		
+	
+	
+	
 	<div class="form-group">
+	
+		<label for="users">Users</label>
+	
+		<select name="post_category" id="">
+		<?php 
+			
+				$query = "SELECT * FROM users ";
+				$select_users = mysqli_query($connection, $query);
+			
+				confirmQuery($select_users);
+
+				while($row = mysqli_fetch_assoc($select_users)){
+					$user_id = $row['user_id'];
+					$user_name = $row['user_name'];
+					
+					echo "<option value='{$user_id}'>{$user_name}</option>";
+					
+				}
+
+			?>	
+		</select>	
+	</div>
+	
+	
+	
+	
+		
+<!--	<div class="form-group">
 		<label for="title">Post Author</label>
 		<input type="text" class="form-control" name="author">
-	</div>	
+	</div>	-->
 	
 	
 	
