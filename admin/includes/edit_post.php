@@ -119,6 +119,7 @@
 		<label for="users">Users</label>
 	
 		<select name="post_user" id="">
+		<?php echo "<option value='{$post_user}'>{$post_user}</option>"; ?>
 		<?php 
 			
 				$query = "SELECT * FROM users ";
