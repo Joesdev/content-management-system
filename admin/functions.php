@@ -12,8 +12,10 @@
 	}
 
 	function escape($string){
-		mysqli_real_escape_string();
+		global $connection;
+		return mysqli_real_escape_string($connection, trim($string));
 	}
+
 	// Create category based on user input
 	function insert_categories(){
 		
