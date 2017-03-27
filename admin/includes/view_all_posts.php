@@ -25,7 +25,7 @@
 					while($row = mysqli_fetch_array($select_post_query)){
 						
 						$post_Title = $row['post_title'];
-						$post_Author = $row['post_author'];
+						$post_user = $row['post_user'];
 						$post_Category_Id = $row['post_category_id'];
 						$post_Status =$row['post_status'];
 
@@ -39,9 +39,9 @@
 
 						// Move Picture from temporary server space to actual.
 
-						$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image
+						$query = "INSERT INTO posts(post_category_id, post_title, post_user, post_date, post_image
 									, post_content, post_tags, post_status) ";
-						$query .= "VALUES({$post_Category_Id}, '{$post_Title}', '{$post_Author}',now()
+						$query .= "VALUES({$post_Category_Id}, '{$post_Title}', '{$post_user}',now()
 									, '{$post_Image}', '{$post_content}', '{$post_tags}','{$post_Status}' )" ;
 
 						$create_Post_Query = mysqli_query($connection, $query);
