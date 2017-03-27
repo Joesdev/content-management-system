@@ -2,7 +2,7 @@
 	// check button press
 	if(isset($_POST['create_post'])){
 		$post_Title = $_POST['title'];
-		$post_Author = $_POST['author'];
+		$post_User = $_POST['post_user'];
 		$post_Category_Id = $_POST['post_category'];
 		$post_Status = $_POST['post_status'];
 		
@@ -22,9 +22,9 @@
 			echo "File failed to upload.";
 		};
 		
-		$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image
+		$query = "INSERT INTO posts(post_category_id, post_title, post_user, post_date, post_image
 					, post_content, post_tags, post_status) ";
-		$query .= "VALUES({$post_Category_Id}, '{$post_Title}', '{$post_Author}',now()
+		$query .= "VALUES({$post_Category_Id}, '{$post_Title}', '{$post_User}',now()
 					, '{$post_Image}', '{$post_content}', '{$post_tags}','{$post_Status}' )" ;
 		
 		$create_Post_Query = mysqli_query($connection, $query);
@@ -78,7 +78,7 @@
 	
 		<label for="users">Users</label>
 	
-		<select name="post_category" id="">
+		<select name="post_user" id="">
 		<?php 
 			
 				$query = "SELECT * FROM users ";
@@ -90,7 +90,7 @@
 					$user_id = $row['user_id'];
 					$user_name = $row['user_name'];
 					
-					echo "<option value='{$user_id}'>{$user_name}</option>";
+					echo "<option value='{$user_user}'>{$user_name}</option>"; // was $user_id
 					
 				}
 

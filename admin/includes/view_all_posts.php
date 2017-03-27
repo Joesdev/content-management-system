@@ -106,6 +106,7 @@
 			while($row = mysqli_fetch_assoc($select_Posts)){
 				$post_Id = $row['post_id'];
 				$post_Author = $row['post_author'];
+				$post_User = $row['post_user'];
 				$post_Title = $row['post_title'];
 				$post_Category = $row['post_category_id'];
 				$post_Status = $row['post_status'];
@@ -120,8 +121,25 @@
 				<td><input class ='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_Id ;?>'></td>
 				<?php
 				echo "<td> $post_Id </td>";
-				echo "<td> $post_Author </td>";
+				
+				
+				
+				if( isset($post_Author) || !empty($post_Author) ){
+					echo "<td> $post_Author </td>";
+				} else if( $post_User || !empty($post_User)  ) {
+					echo "<td> $post_User </td>";
+				}
+				
+				
+				
+				
+				
 				echo "<td> <a href ='../post.php?p_id=$post_Id'> $post_Title </a></td>";
+				
+				
+				
+				
+				
 
 				// Retreive id and category for database
 				$query = "SELECT * FROM categories WHERE cat_id = {$post_Category} ";
