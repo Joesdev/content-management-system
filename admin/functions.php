@@ -11,6 +11,9 @@
 		
 	}
 
+	function escape($string){
+		mysqli_real_escape_string();
+	}
 	// Create category based on user input
 	function insert_categories(){
 		
