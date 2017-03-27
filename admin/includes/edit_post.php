@@ -11,7 +11,7 @@
 	// Ghost Text in input boxes
 	while($row = mysqli_fetch_assoc($select_Posts_By_Id)){
 		$post_Id = $row['post_id'];
-		$post_Author = $row['post_author'];
+		$post_user = $row['post_user'];
 		$post_Title = $row['post_title'];
 		$post_Category = $row['post_category_id'];
 		$post_Status = $row['post_status'];
@@ -27,7 +27,7 @@
 	if(isset($_POST['update_post'])){
 		
 		// Change values to edited values from forms
-		$post_Author = $_POST['post_Author'];
+		$post_user = $_POST['post_user'];
 		$post_Title = $_POST['post_Title']; 
 		$post_Category = $_POST['post_category'];
 		$post_Status = $_POST['post_status'] ;
@@ -52,7 +52,7 @@
 		$query .= "post_title = '{$post_Title}', ";
 		$query .= "post_category_id = '{$post_Category}', ";
 		$query .= "post_date = now(), ";
-		$query .= "post_author = '{$post_Author}', ";
+		$query .= "post_user = '{$post_user}', ";
 		$query .= "post_status = '{$post_Status}', ";
 		$query .= "post_tags = '{$post_Tags}', ";
 		$query .= "post_content = '{$post_Content}', ";
@@ -79,6 +79,7 @@
 		</div>
 		
 	<div class="form-group">
+		<label for="users">Categories</label>
 		<select name="post_category" id="" >
 			<?php 
 				// Retreive a Single Row of Information
@@ -112,14 +113,41 @@
 			?>
 		</select>	
 	</div>
+	
+		<div class="form-group">
+	
+		<label for="users">Users</label>
+	
+		<select name="post_user" id="">
+		<?php 
+			
+				$query = "SELECT * FROM users ";
+				$select_users = mysqli_query($connection, $query);
+			
+				confirmQuery($select_users);
+
+				while($row = mysqli_fetch_assoc($select_users)){
+					$user_id = $row['user_id'];
+					$user_name = $row['user_name'];
+					
+					echo "<option value='{$user_name}'>{$user_name}</option>";
+					
+				}
+
+			?>	
+		</select>	
+	</div>
+	
+	
 		
-	<div class="form-group">
-		<label for="title">Post Author</label>
-		<input value="<?php echo $post_Author; ?>" type="text" class="form-control" name="post_Author">
-	</div>	
+<!--	<div class="form-group">
+		<label for="title">Post User</label>
+		<input value="<?php //echo $post_user; ?>" type="text" class="form-control" name="post_Author">
+	</div>	-->
 	
 	
 	<div class="form-group">
+		<label for="status">Status</label>
 		<select name="post_status" id="">
 			<option value='<?php echo $post_Status;?>'><?php echo $post_Status; ?></option>
 				<?php
@@ -135,8 +163,8 @@
 
 	
 	<div class="form-group">
-		<img width=100 src="../images/<?php echo $post_Image; ?>" alt=""/>
 		<label for="post_image">Post Image</label>
+		<img width=100 src="../images/<?php echo $post_Image; ?>" alt=""/>
 		<input type="file" name="image" class="form-control">
 	</div>	
 	
