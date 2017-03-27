@@ -90,7 +90,7 @@
 					$user_id = $row['user_id'];
 					$user_name = $row['user_name'];
 					
-					echo "<option value='{$user_user}'>{$user_name}</option>"; // was $user_id
+					echo "<option value='{$user_name}'>{$user_name}</option>";
 					
 				}
 

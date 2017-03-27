@@ -124,8 +124,8 @@
 				
 				
 				
-				if( isset($post_Author) || !empty($post_Author) ){
-					echo "<td> $post_Author </td>";
+				if(!empty($post_Author) ){
+					echo "<td> $post_Author 'None'</td>";
 				} else if( $post_User || !empty($post_User)  ) {
 					echo "<td> $post_User </td>";
 				}
