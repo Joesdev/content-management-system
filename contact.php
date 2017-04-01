@@ -3,36 +3,11 @@
 <?php 
 	if(isset($_POST['submit'])){
 		
-		$username = $_POST['username'];
-		$email    = $_POST['email'];
-		$password = $_POST['password'];
+		$to = "drycreeksilv@gmail.com";
+		$subject    = $_POST['subject'];
+		$body = $_POST['body'];
 		
-		if(!empty($username) && !empty ($email) && !empty ($password)){
-
-			// Clean up input for security
-			$username = mysqli_real_escape_string($connection, $username);
-			$email    = mysqli_real_escape_string($connection, $email);
-			$password = mysqli_real_escape_string($connection, $password);
-			
-			
-			$password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12) );
-			
-			$query = "INSERT INTO users (user_name, user_email, user_password, user_role) ";
-			$query .= "VALUES ('{$username}', '{$email}', '{$password}', 'subscriber') ";
-			$register_user_query = mysqli_query($connection, $query);
-			
-			if(!$register_user_query){
-				die('QUERY FAILED!' . mysqli_error($connection));
-			}
-
-			$message = "Account Created!";
-
-		} else {
-			$message = "Fields Cannot Be Empty.";
-		}
 		
-	} else {
-		$message = "";
 	}
 ?> 
  
@@ -58,7 +33,7 @@
                             <input type="email" name="email" id="email" class="form-control" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <label for="email" class="sr-only">Subject</label>
+                            <label for="subject" class="sr-only">Subject</label>
                             <input type="subject" name="subject" id="subject" class="form-control" placeholder="What's The Subject?">
                         </div>
                          <div class="form-group">
