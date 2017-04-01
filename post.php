@@ -39,7 +39,7 @@
 							$post_content = $row['post_content'];
 
 							echo "<li><a href='#'>{$post_title}</a></li>";
-					?>
+					?>	
 
 							<h1 class="page-header">
 								Page Heading
